@@ -16,9 +16,9 @@ d-i passwd/root-password password cobbler
 d-i passwd/root-password-again password cobbler
 d-i passwd/make-user boolean true 
 d-i passwd/user-fullname string System administrator 
-d-i passwd/username string sysadm
-d-i passwd/user-password password sysadm 
-d-i passwd/user-password-again password sysadm 
+d-i passwd/username string deadman
+d-i passwd/user-password password h6YIM7naneY+2=VveYm29_Bvvm2=M=rpt=n84+6pFWNHhNOV
+d-i passwd/user-password-again password h6YIM7naneY+2=VveYm29_Bvvm2=M=rpt=n84+6pFWNHhNOV
 d-i user-setup/allow-password-weak boolean true 
 d-i user-setup/encrypt-home boolean false 
 
@@ -34,5 +34,7 @@ d-i preseed/late_command string \
    wget http://$http_server/trusty-sources.list -O /target/etc/apt/sources.list; \
    sed -i '/PermitRootLogin / s/ .*/ yes/' /target/etc/ssh/sshd_config; \
    wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_late_default | \
-   chroot /target /bin/sh -s
+   chroot /target /bin/sh -s ; \
+   wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=vcpe-after-install.sh | \
+   chroot /target /bin/sh -s 
 
