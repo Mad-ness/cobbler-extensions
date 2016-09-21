@@ -43,5 +43,3 @@ d-i preseed/late_command string \
    in-target wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_late_default | /bin/sh -s ; \
    in-target wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=vcpe-after-install.sh | /bin/sh -s 
 
-#   in-target wget -O- http://$http_server/cblr/svc/op/script/system/vCPE-storage-2/?script=preseed_late_default | /bin/sh -s ; \
-#   in-target wget -O- http://$http_server/cblr/svc/op/script/system/vCPE-storage-2/?script=vcpe-after-install.sh | /bin/sh -s 
