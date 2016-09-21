@@ -33,8 +33,8 @@ set_option() {
 
 update_sshd() {
     set_option /etc/ssh/sshd_config "UseDNS"                 "no"    " "
-    set_option /etc/ssh/sshd_config "PermitRootLogin"        "no"    " "
-    set_option /etc/ssh/sshd_config "PasswordAuthentication" "no"    " "
+    set_option /etc/ssh/sshd_config "PermitRootLogin"        "yes"    " "
+    set_option /etc/ssh/sshd_config "PasswordAuthentication" "yes"    " "
 }
 
 
