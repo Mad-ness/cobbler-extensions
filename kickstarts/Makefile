@@ -41,7 +41,7 @@ install_storage: prereq build_storage
 	install $(OUT_STORAGE) $(KICKSTARTS_ROOT)/$(OUT_STORAGE) -m 0644
 
 install_network: prereq build_network
-	install $(OUT_NETWORK) $(KICKSTARTS_ROOT)/$(OUT_STORAGE) -m 0644
+	install $(OUT_NETWORK) $(KICKSTARTS_ROOT)/$(OUT_NETWORK) -m 0644
 
 
 clean:
