@@ -1,4 +1,3 @@
-COBBLER_ROOT	:= /tmp
 
 PRE_FILE	= templates/10_ub-vcpe.part
 POST_FILE 	= templates/30_ub-vcpe.part
