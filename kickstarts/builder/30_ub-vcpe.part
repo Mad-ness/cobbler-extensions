@@ -1,0 +1,120 @@
+# This makes partman automatically partition without confirmation, provided
+# that you told it what to do using one of the methods above.
+d-i partman-partitioning/confirm_write_new_label boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+
+#############
+#
+# Packages
+#
+#############
+
+# Package selection
+tasksel tasksel/first multiselect openssh-server
+
+# Whether to upgrade packages after debootstrap.
+# Allowed values: none, safe-upgrade, full-upgrade
+d-i pkgsel/include string none
+
+
+# Policy for applying updates. May be "none" (no automatic updates),
+# "unattended-upgrades" (install security updates automatically), or
+# "landscape" (manage system with Landscape).
+d-i pkgsel/update-policy select none
+
+# Some versions of the installer can report back on what software you have
+# installed, and what software you use. The default is not to report back,
+# but sending reports helps the project determine what software is most
+# popular and include it on CDs.
+popularity-contest popularity-contest/participate boolean false
+
+#############
+#
+# Users and Password
+#
+#############
+
+# Skip creation of a root account (normal user account will be able to
+# use sudo). The default is false; preseed this to true if you want to set
+# a root password.
+d-i passwd/root-login boolean true
+
+# Alternatively, to skip creation of a normal user account.
+d-i passwd/make-user boolean true
+
+# The installer will warn about weak passwords. If you are sure you know
+# what you're doing and want to override it, uncomment this.
+d-i user-setup/allow-password-weak boolean true
+
+# User setting
+d-i passwd/root-login boolean true
+d-i passwd/make-user boolean false 
+d-i passwd/root-password password cobbler
+d-i passwd/root-password-again password cobbler
+
+# Create a sysadmin account
+d-i passwd/make-user boolean true 
+d-i passwd/user-fullname string System administrator 
+d-i passwd/username string sysadm
+d-i passwd/user-password password sysadm 
+d-i passwd/user-password-again password sysadm 
+d-i user-setup/allow-password-weak boolean true 
+d-i user-setup/encrypt-home boolean false 
+
+$SNIPPET('preseed_apt_repo_config')
+
+
+#############
+#
+# Bootloader
+#
+#############
+
+# This is fairly safe to set, it makes grub install automatically to the MBR
+# if no other operating system is detected on the machine.
+d-i grub-installer/only_debian boolean true
+
+#############
+#
+# Post Install
+#
+#############
+
+# Command Line 1: Allow root to SSH.
+# Command Line 2: Cobbler overwrites sources.list with its own repos. Put the default Ubuntu sources.list back.
+# Command Line 3: Cobbler API call to turn off netboot.
+#d-i preseed/late_command string \
+#        sed -i '/PermitRootLogin / s/ .*/ yes/' /target/etc/ssh/sshd_config; \
+#        wget http://$http_server/trusty-sources.list -O /target/etc/apt/sources.list; \
+#        wget http://$http_server/cblr/svc/op/nopxe/system/$system_name -O /dev/null
+
+#d-i preseed/early_command string wget -O- \
+#   http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_early_default | \
+#   /bin/sh -s
+
+#d-i preseed/late_command string wget -O- \
+#   http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_late_default | \
+#   chroot /target /bin/sh -s
+
+d-i preseed/early_command string \
+   wget http://$http_server/trusty-sources.list -O /target/etc/apt/sources.list; \
+   sed -i '/PermitRootLogin / s/ .*/ yes/' /target/etc/ssh/sshd_config; \
+   wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_early_default | \
+   /bin/sh -s
+
+d-i preseed/late_command string wget -O- \
+   http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_late_default | \
+   chroot /target /bin/sh -s
+
+
+#############
+#
+# Finish
+#
+#############
+
+# Reboot after the install is finished.
+finish-install finish-install/reboot_in_progress note
+
