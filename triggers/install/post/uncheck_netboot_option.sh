@@ -22,6 +22,9 @@ cobbler system edit --name "$2" --netboot-enabled=NO
 
 if [ $? -eq 0 ]; then
     log "Netboot flag is off for system $2"
+    cat << BROADCAST_MSG | wall
+Dear all. Be aware of that server $2 has just been installed and is going down for first boot.
+BROADCAST_MSG
 else
     log "Unexpected error caused during unchecking the netboot flag on system $2"
 fi
