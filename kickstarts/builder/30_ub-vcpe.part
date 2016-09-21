@@ -26,6 +26,14 @@ $SNIPPET('preseed_apt_repo_config')
 d-i pkgsel/include string ntp ssh wget
 d-i debian-installer/add-kernel-opts string $kernel_options_post
 d-i finish-install/reboot_in_progress note
+
+## Figure out if we're kickstarting a system or a profile
+#if $getVar('system_name','') != ''
+#set $what = "system"
+#else
+#set $what = "profile"
+#end if
+
 d-i preseed/early_command string wget -O- \
    http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_early_default | \
    /bin/sh -s
@@ -35,3 +43,5 @@ d-i preseed/late_command string \
    in-target wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_late_default | /bin/sh -s ; \
    in-target wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=vcpe-after-install.sh | /bin/sh -s 
 
+#   in-target wget -O- http://$http_server/cblr/svc/op/script/system/vCPE-storage-2/?script=preseed_late_default | /bin/sh -s ; \
+#   in-target wget -O- http://$http_server/cblr/svc/op/script/system/vCPE-storage-2/?script=vcpe-after-install.sh | /bin/sh -s 
