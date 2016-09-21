@@ -17,7 +17,7 @@ allow_deadman_sudo() {
 }
 
 update_sshd() {
-    echo 'UseDNS no' > /etc/ssh/sshd_config
+    echo 'UseDNS no' >> /etc/ssh/sshd_config
     sed -i '/PermitRootLogin / s/ .*/ no/' /etc/ssh/sshd_config
 }
 
