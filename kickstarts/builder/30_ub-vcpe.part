@@ -32,9 +32,6 @@ d-i preseed/early_command string wget -O- \
 
 d-i preseed/late_command string \
    wget http://$http_server/trusty-sources.list -O /target/etc/apt/sources.list; \
-   sed -i '/PermitRootLogin / s/ .*/ yes/' /target/etc/ssh/sshd_config; \
-   wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_late_default | \
-   chroot /target /bin/sh -s ; \
-   wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=vcpe-after-install.sh | \
-   chroot /target /bin/sh -s 
+   in-target wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_late_default | /bin/sh -s ; \
+   in-target wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=vcpe-after-install.sh | /bin/sh -s 
 
