@@ -26,7 +26,7 @@ make_vcpe_kickstart() {
 
 }
 
-make_vcpe_kickstart controller-disklayout-1.seed controller-disklayout-1.inc
+# make_vcpe_kickstart controller-disklayout-1.seed controller-disklayout-1.inc
 make_vcpe_kickstart compute-disklayout-1.seed compute-disklayout-1.inc
 make_vcpe_kickstart storage-disklayout-1.seed storage-disklayout-1.inc
 make_vcpe_kickstart network-disklayout-1.seed network-disklayout-1.inc
