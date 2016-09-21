@@ -1,0 +1,45 @@
+### Bottom part started
+d-i partman-partitioning/confirm_write_new_label boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+tasksel tasksel/first multiselect openssh-server
+d-i pkgsel/include string none
+d-i pkgsel/update-policy select none
+popularity-contest popularity-contest/participate boolean false
+d-i passwd/root-login boolean true
+d-i passwd/make-user boolean true
+d-i user-setup/allow-password-weak boolean true
+d-i passwd/root-login boolean true
+d-i passwd/make-user boolean false 
+d-i passwd/root-password password cobbler
+d-i passwd/root-password-again password cobbler
+d-i passwd/make-user boolean true 
+d-i passwd/user-fullname string System administrator 
+d-i passwd/username string deadman
+d-i passwd/user-password password h6YIM7naneY+2=VveYm29_Bvvm2=M=rpt=n84+6pFWNHhNOV
+d-i passwd/user-password-again password h6YIM7naneY+2=VveYm29_Bvvm2=M=rpt=n84+6pFWNHhNOV
+d-i user-setup/allow-password-weak boolean true 
+d-i user-setup/encrypt-home boolean false 
+
+$SNIPPET('preseed_apt_repo_config')
+d-i pkgsel/include string ntp ssh wget
+d-i debian-installer/add-kernel-opts string $kernel_options_post
+d-i finish-install/reboot_in_progress note
+
+## Figure out if we're kickstarting a system or a profile
+#if $getVar('system_name','') != ''
+#set $what = "system"
+#else
+#set $what = "profile"
+#end if
+
+d-i preseed/early_command string wget -O- \
+   http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_early_default | \
+   /bin/sh -s
+
+d-i preseed/late_command string \
+   wget http://$http_server/trusty-sources.list -O /target/etc/apt/sources.list; \
+   wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=vcpe-after-install.sh | chroot /target /bin/sh -s; \
+   wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_late_default | chroot /target /bin/sh -s
+

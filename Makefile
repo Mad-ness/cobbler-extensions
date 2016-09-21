@@ -3,9 +3,7 @@ COBBLER_ROOT=/tmp
 
 export COBBLER_ROOT
 
-#install: install_scripts install_triggers 
-# install_kickstarts
-install: install_triggers
+install: install_scripts install_triggers install_kickstarts
 
 install_scripts:
 	cd scripts scripts && make install

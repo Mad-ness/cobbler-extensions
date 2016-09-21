@@ -2,8 +2,8 @@
 
 templates_dir="/etc/cobbler/build_templates"
 templates_dir=.
-kickstart_dir="/var/lib/cobbler/kickstarts"
-kickstart_dir=.
+kickstart_dir="/var/lib/cobbler"
+# kickstart_dir=.
 
 
 if [ -n "$1" -a -d "$1" ]; then
