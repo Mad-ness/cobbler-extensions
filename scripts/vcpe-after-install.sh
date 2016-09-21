@@ -18,7 +18,7 @@ if [ "$1" != "system" -o -z "$2" ]; then
 fi
  
 log "Starting to uncheck NETBOOT_ENABLED flag"
-cobbler system edit --name vCPE-storage-2 --netboot-enabled=NO
+cobbler system edit --name "$2" --netboot-enabled=NO
  
 if [ $? -eq 0 ]; then
     log "Netboot flag is off for system $2"
