@@ -2,8 +2,8 @@
 
 templates_dir="/etc/cobbler/build_templates"
 templates_dir=.
-kickstart_dir="/var/lib/cobbler/kickstarts"
-kickstart_dir=.
+kickstart_dir="/var/lib/cobbler"
+# kickstart_dir=.
 
 
 if [ -n "$1" -a -d "$1" ]; then
@@ -26,7 +26,7 @@ make_vcpe_kickstart() {
 
 }
 
-make_vcpe_kickstart controller-disklayout-1.seed controller-disklayout-1.inc
+# make_vcpe_kickstart controller-disklayout-1.seed controller-disklayout-1.inc
 make_vcpe_kickstart compute-disklayout-1.seed compute-disklayout-1.inc
 make_vcpe_kickstart storage-disklayout-1.seed storage-disklayout-1.inc
 make_vcpe_kickstart network-disklayout-1.seed network-disklayout-1.inc
