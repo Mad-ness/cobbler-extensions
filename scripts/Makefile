@@ -7,3 +7,8 @@ install_scripts:
 		install $$scr $(COBBLER_ROOT)/scripts -m 0644 ; \
 	done
 
+clean:
+	for scr in $(SCRIPTS); do \
+		unlink $(COBBLER_ROOT)/scripts/$$scr ;\
+	done
+

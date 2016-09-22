@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import yaml
+import subprocess
+
+def load_yaml(filename): 
+	result = {}
+	with open(filename, 'r') as fd:
+		result = yaml.load(fd)	
+	return result
+
+
+
+
+
+if __name__ == "__main__":
+	y = load_yaml('systems.yaml')
+	print (y)
+	pass
+

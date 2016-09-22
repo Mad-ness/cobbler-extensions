@@ -1,0 +1,201 @@
+systems:
+  controllers:  
+# -- 
+    - id: vCPE-controller-1
+      name: vCPE-controller-1
+      hostname: controller-cloud-1.moscow.vcpe.beelline.ru
+      kernel_options: interface=em1
+      kickstart_file: auto-vcpe-controller-disklayout-1.seed
+      netboot_enabled: false
+      profile_name: ubuntu-server-14.04.5-x86_64
+      environment: production
+      networks:
+      - id: em1
+        iface: em1
+        mac_address: "40:a8:f0:26:66:7c"
+        ip_ipaddress: 192.168.1.10
+        netmask: 255.255.255.0
+        gateway: 192.168.1.1
+# --
+    - id: vCPE-controller-2
+      name: vCPE-controller-2
+      hostname: controller-cloud-2.moscow.vcpe.beelline.ru
+      kernel_options: interface=em1
+      kickstart_file: auto-vcpe-controller-disklayout-1.seed
+      netboot_enabled: false
+      profile_name: ubuntu-server-14.04.5-x86_64
+      environment: production
+      networks:
+      - id: em1
+        iface: em1
+        mac_address: "40:a8:f0:26:11:0c"
+        ip_ipaddress: 192.168.1.11
+        netmask: 255.255.255.0
+        gateway: 192.168.1.1
+# --
+    - id: vCPE-controller-3
+      name: vCPE-controller-3
+      hostname: controller-cloud-3.moscow.vcpe.beelline.ru
+      kernel_options: interface=em1
+      kickstart_file: auto-vcpe-controller-disklayout-1.seed
+      netboot_enabled: false
+      profile_name: ubuntu-server-14.04.5-x86_64
+      environment: production
+      networks:
+      - id: em1
+        iface: em1
+        mac_address: "40:a8:f0:2e:60:d4"
+        ip_ipaddress: 192.168.1.12
+        netmask: 255.255.255.0
+        gateway: 192.168.1.1
+
+  networks:
+# --
+    - id: vCPE-network-1
+      name: vCPE-network-1
+      hostname: controller-net-1.moscow.vcpe.beelline.ru
+      kernel_options: interface=em1
+      kickstart_file: auto-vcpe-network-disklayout-1.seed
+      netboot_enabled: false
+      profile_name: ubuntu-server-14.04.5-x86_64
+      environment: production
+      networks:
+      - id: em1
+        iface: em1
+        mac_address: "c4:34:6b:b0:88:00"
+        ip_ipaddress: 192.168.1.20
+        netmask: 255.255.255.0
+        gateway: 192.168.1.1
+# --
+    - id: vCPE-network-2
+      name: vCPE-network-2
+      hostname: controller-net-2.moscow.vcpe.beelline.ru
+      kernel_options: interface=em1
+      kickstart_file: auto-vcpe-network-disklayout-1.seed
+      netboot_enabled: false
+      profile_name: ubuntu-server-14.04.5-x86_64
+      environment: production
+      networks:
+      - id: em1
+        iface: em1
+        mac_address: "c4:34:6b:b0:fd:08"
+        ip_ipaddress: 192.168.1.21
+        netmask: 255.255.255.0
+        gateway: 192.168.1.1
+# --
+    - id: vCPE-network-3
+      name: vCPE-network-3
+      hostname: controller-net-3.moscow.vcpe.beelline.ru
+      kernel_options: interface=em1
+      kickstart_file: auto-vcpe-network-disklayout-1.seed
+      netboot_enabled: false
+      profile_name: ubuntu-server-14.04.5-x86_64
+      environment: production
+      networks:
+      - id: em1
+        iface: em1
+        mac_address: "d8:9d:67:60:b7:18"
+        ip_ipaddress: 192.168.1.22
+        netmask: 255.255.255.0
+        gateway: 192.168.1.1
+
+  storages:
+# --
+    - id: vCPE-storage-1
+      name: vCPE-storage-1
+      hostname: controller-storage-1.moscow.vcpe.beelline.ru
+      kernel_options: interface=em1
+      kickstart_file: auto-vcpe-storage-disklayout-1.seed
+      netboot_enabled: false
+      profile_name: ubuntu-server-14.04.5-x86_64
+      environment: production
+      networks:
+      - id: em1
+        iface: em1
+        mac_address: "40:a8:f0:21:d1:60"
+        ip_ipaddress: 192.168.1.150
+        netmask: 255.255.255.0
+        gateway: 192.168.1.1
+# --
+    - id: vCPE-storage-2
+      name: vCPE-storage-2
+      hostname: controller-storage-2.moscow.vcpe.beelline.ru
+      kernel_options: interface=em1
+      kickstart_file: auto-vcpe-storage-disklayout-1.seed
+      netboot_enabled: false
+      profile_name: ubuntu-server-14.04.5-x86_64
+      environment: production
+      networks:
+      - id: em1
+        iface: em1
+        mac_address: "a0:d3:c1:02:8a:14"
+        ip_ipaddress: 192.168.1.151
+        netmask: 255.255.255.0
+        gateway: 192.168.1.1
+# --
+    - id: vCPE-storage-3
+      name: vCPE-storage-3
+      hostname: controller-storage-3.moscow.vcpe.beelline.ru
+      kernel_options: interface=em1
+      kickstart_file: auto-vcpe-storage-disklayout-1.seed
+      netboot_enabled: false
+      profile_name: ubuntu-server-14.04.5-x86_64
+      environment: production
+      networks:
+      - id: em1
+        iface: em1
+        mac_address: "40:a8:f0:30:f6:d0"
+        ip_ipaddress: 192.168.1.152
+        netmask: 255.255.255.0
+        gateway: 192.168.1.1
+
+  computes:
+# --
+    - id: vCPE-compute-1
+      name: vCPE-compute-1
+      hostname: compute-1.moscow.vcpe.beelline.ru
+      kernel_options: interface=em1
+      kickstart_file: auto-vcpe-compute-disklayout-1.seed
+      netboot_enabled: false
+      profile_name: ubuntu-server-14.04.5-x86_64
+      environment: production
+      networks:
+      - id: em1
+        iface: em1
+        mac_address: "a0:d3:c1:f2:36:2c"
+        ip_ipaddress: 192.168.1.30
+        netmask: 255.255.255.0
+        gateway: 192.168.1.1
+# --
+    - id: vCPE-compute-2
+      name: vCPE-compute-2
+      hostname: compute-2.moscow.vcpe.beelline.ru
+      kernel_options: interface=em1
+      kickstart_file: auto-vcpe-compute-disklayout-1.seed
+      netboot_enabled: false
+      profile_name: ubuntu-server-14.04.5-x86_64
+      environment: production
+      networks:
+      - id: em1
+        iface: em1
+        mac_address: "40:a8:f0:2e:3a:04"
+        ip_ipaddress: 192.168.1.31
+        netmask: 255.255.255.0
+        gateway: 192.168.1.1
+# --
+    - id: vCPE-compute-3
+      name: vCPE-compute-3
+      hostname: compute-3.moscow.vcpe.beelline.ru
+      kernel_options: interface=em1
+      kickstart_file: auto-vcpe-compute-disklayout-1.seed
+      netboot_enabled: false
+      profile_name: ubuntu-server-14.04.5-x86_64
+      environment: production
+      networks:
+      - id: em1
+        iface: em1
+        mac_address: "40:a8:f0:26:65:c8"
+        ip_ipaddress: 192.168.1.32
+        netmask: 255.255.255.0
+        gateway: 192.168.1.1
+

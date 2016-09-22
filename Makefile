@@ -14,4 +14,7 @@ install_triggers:
 install_kickstarts:
 	cd kickstarts && make install
 
+clean: scripts_clean
 
+scripts_clean:
+	cd scripts && make clean
