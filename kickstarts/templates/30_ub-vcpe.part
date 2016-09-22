@@ -16,9 +16,8 @@ d-i passwd/root-password password cobbler
 d-i passwd/root-password-again password cobbler
 d-i passwd/make-user boolean true 
 d-i passwd/user-fullname string System administrator 
-d-i passwd/username string deadman
-d-i passwd/user-password password h6YIM7naneY+2=VveYm29_Bvvm2=M=rpt=n84+6pFWNHhNOV
-d-i passwd/user-password-again password h6YIM7naneY+2=VveYm29_Bvvm2=M=rpt=n84+6pFWNHhNOV
+d-i passwd/username string soldier
+d-i passwd/user-password-crypted password $6$rGyTayBI$63sjvStOm3qw1XtuhDAbObQWeJcIxJBnYWEoaSK3ls3Ck6DWNifrZQ9M6BYeABfCcEWadHqYkCnNxiGrVO6/V/ 
 d-i user-setup/allow-password-weak boolean true 
 d-i user-setup/encrypt-home boolean false 
 
