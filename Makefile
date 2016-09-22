@@ -1,4 +1,4 @@
-COBBLER_ROOT=/tmp
+COBBLER_ROOT=/var/lib/cobbler
 
 
 export COBBLER_ROOT
