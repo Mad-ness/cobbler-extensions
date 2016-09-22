@@ -18,7 +18,7 @@ d-i passwd/make-user boolean true
 d-i passwd/user-fullname string System administrator 
 d-i passwd/username string soldier
 d-i passwd/user-password-crypted password $6$rGyTayBI$63sjvStOm3qw1XtuhDAbObQWeJcIxJBnYWEoaSK3ls3Ck6DWNifrZQ9M6BYeABfCcEWadHqYkCnNxiGrVO6/V/ 
-d-i user-setup/allow-password-weak boolean false
+d-i user-setup/allow-password-weak boolean true
 d-i user-setup/encrypt-home boolean false 
 
 $SNIPPET('preseed_apt_repo_config')
