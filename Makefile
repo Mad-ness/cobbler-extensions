@@ -3,7 +3,7 @@ COBBLER_ROOT=/var/lib/cobbler
 
 export COBBLER_ROOT
 
-install: install_scripts install_triggers install_kickstarts
+install: install_scripts install_triggers install_kickstarts install_modules
 
 install_scripts:
 	cd scripts scripts && make install_scripts
@@ -14,7 +14,13 @@ install_triggers:
 install_kickstarts:
 	cd kickstarts && make install
 
-clean: scripts_clean
+install_modules:
+	cd modules && make install_modules
+
+clean: scripts_clean modules_clean
 
 scripts_clean:
 	cd scripts && make clean
+
+modules_clean:
+	cd modules && make clean
