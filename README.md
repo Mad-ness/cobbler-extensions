@@ -77,6 +77,7 @@ Variable $name is coming from Cobbler itself and variable $what is defined next 
 	#end if
 
 I have found this code in examples, <cobbler_data>/kickstarts, coming out of box.
+here.on2 is a script that taken from <cobbler_data>/scripts directory.
 
 
 ==== Some facts:
