@@ -17,7 +17,6 @@ if [ "$1" != "system" -o -z "$2" ]; then
     exit 0
 fi
 
-log "Starting to uncheck NETBOOT_ENABLED flag"
 cobbler system edit --name "$2" --netboot-enabled=NO
 
 if [ $? -eq 0 ]; then
