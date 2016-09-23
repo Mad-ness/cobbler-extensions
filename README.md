@@ -26,3 +26,5 @@ Files in these directories should use general cheetah syntax, for instance
 
 But included snippets in <cobbler_data>/snippets directory already can go in both Cheetah and Jinja2 languages.
 
+== <cobbler_data>/modules
+- Any modifications performed in .py modules must issue the restarting of cobblerd service as they read only once during starting the service
