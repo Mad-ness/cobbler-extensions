@@ -4,14 +4,18 @@ There are a few findings I observed when have been trying to solve my issues.
 
 == Selection of a template engine
 
-It is possible to select either Cheetah or Jinja2 of template engines. For this there is an option defalt_template_engine in /etc/cobbler/settings (don't forget to restart cobblerd after the modification) that may be adjusted as required and used by default. Besides this option each of templated file may start from line
+It is possible to select either Cheetah or Jinja2 of template engines. For this there is an option defalt_template_type in /etc/cobbler/settings (don't forget to restart cobblerd after the modification) that may be adjusted as required and used by default. Besides this option each of templated file may start from line
 
 	#template=<engine_name>	[put one of these cheetah, jinja2]
 	(no whitespaces allowed here)
 
+
 This allows to set to a required renderer. Because of Cheetah website is almost dead (a few days not responding) it is good to set only converted templates in Jinja2 and to not break other templates. Probably you need to ensure that python can import jinja2 module.
 
+Update: It is not a good idea to set a global variable to jinja. It breaks a lot of templates using for generating pxe configurations.
+
 === <cobbler_data>/scripts
+
 Files in these directories should use general cheetah syntax, for instance
 
 	bash# cat scripts/preseed_late_default 

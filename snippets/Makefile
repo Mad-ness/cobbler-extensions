@@ -1,5 +1,5 @@
 
-SNIPPETS = $(wildcard *.sn)
+SNIPPETS = $(basename $(wildcard *.sn))
 
 install_snippets:
 	install -d $(COBBLER_ROOT)/snippets -m 0755
