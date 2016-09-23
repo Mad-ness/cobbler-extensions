@@ -30,9 +30,17 @@ from cobbler.cexceptions import CX
 import utils
 
 
-script_template = """#!/bin/bash
+script_template = """
 {% for iface in interfaces.keys() %}
-cat << NET_{{ iface }} > /etc/network/interfaces.d/inet_{{ iface }}
+# Created upon installation by Cobbler
+cat << INTES > /etc/network/interfaces
+auto lo
+iface lo inet loopback
+
+source-directory /etc/network/interfaces.d
+INTES
+
+cat << NET_{{ iface }} > /etc/network/interfaces.d/{{ iface }}
 # Created upon installation
 auto {{ iface }}
 iface {{ iface }} inet static
