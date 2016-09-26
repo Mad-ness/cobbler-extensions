@@ -3,7 +3,7 @@
 # 2016 (c)
 # Dmitrii Mostovshchikov <dmadm2008@gmail.com>
 # The script is a trigger that to be placed under <cobbler_data>/triggers/install/post/ directory
-# It uncheck the netboot flags once a server is being installed
+# It removes a temprorary created shell script for configuring network interfaces
 #
 
 logfile=/var/log/cobbler/install_post.log
@@ -17,13 +17,8 @@ if [ "$1" != "system" -o -z "$2" ]; then
     exit 0
 fi
 
-cobbler system edit --name "$2" --netboot-enabled=NO
-
-if [ $? -eq 0 ]; then
-    log "Netboot flag is off for system $2"
-else
-    log "Unexpected error caused during unchecking the netboot flag on system $2"
-fi
+log "Removing a shell script that've been using for configuring network on $2"
+unlink /var/lib/cobbler/scripts/networkcfg_$2
 
 exit 0
 

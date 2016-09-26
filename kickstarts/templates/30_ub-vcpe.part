@@ -16,10 +16,9 @@ d-i passwd/root-password password cobbler
 d-i passwd/root-password-again password cobbler
 d-i passwd/make-user boolean true 
 d-i passwd/user-fullname string System administrator 
-d-i passwd/username string deadman
-d-i passwd/user-password password h6YIM7naneY+2=VveYm29_Bvvm2=M=rpt=n84+6pFWNHhNOV
-d-i passwd/user-password-again password h6YIM7naneY+2=VveYm29_Bvvm2=M=rpt=n84+6pFWNHhNOV
-d-i user-setup/allow-password-weak boolean true 
+d-i passwd/username string soldier
+d-i passwd/user-password-crypted password $6$rGyTayBI$63sjvStOm3qw1XtuhDAbObQWeJcIxJBnYWEoaSK3ls3Ck6DWNifrZQ9M6BYeABfCcEWadHqYkCnNxiGrVO6/V/ 
+d-i user-setup/allow-password-weak boolean true
 d-i user-setup/encrypt-home boolean false 
 
 $SNIPPET('preseed_apt_repo_config')
@@ -34,12 +33,12 @@ d-i finish-install/reboot_in_progress note
 #set $what = "profile"
 #end if
 
-d-i preseed/early_command string wget -O- \
-   http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_early_default | \
-   /bin/sh -s
+d-i preseed/early_command string \
+   wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_early_default | /bin/sh -s
 
 d-i preseed/late_command string \
-   wget http://$http_server/trusty-sources.list -O /target/etc/apt/sources.list; \
-   wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=vcpe-after-install.sh | chroot /target /bin/sh -s; \
-   wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=preseed_late_default | chroot /target /bin/sh -s
+   wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=vCPE_after_install.sh | chroot /target /bin/sh -s; \
+   wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=vCPE_network_cfg.sh | chroot /target /bin/sh -s; \
+   wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=vCPE_late_custom.sh | chroot /target /bin/sh -s
 
+# pass the vCPE_late_custom.sh script is being executed last

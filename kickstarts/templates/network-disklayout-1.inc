@@ -50,7 +50,7 @@ d-i partman-auto/expert_recipe string \
                       label{ VARLOG }                         \
                       mountpoint{ /var/log }                  \
               .                                               \
-              34359 1 34359 ext4                              \
+              34359 1 38000 ext4                              \
                       $lvmok{ } in_vg{ rootvg }               \
                       lv_name{ tmp }                          \
                       method{ format } format{ }              \

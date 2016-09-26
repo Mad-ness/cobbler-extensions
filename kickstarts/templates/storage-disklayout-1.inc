@@ -1,4 +1,4 @@
-d-i partman-auto/disk string /dev/sda
+d-i partman-auto/disk string /dev/sdb
 d-i partman-auto/method string lvm
 d-i partman-auto/purge_lvm_from_device boolean true
 d-i partman-lvm/device_remove_lvm boolean true
@@ -42,7 +42,7 @@ d-i partman-auto/expert_recipe string \
                       label{ VAR }                            \
                       mountpoint{ /var }                      \
               .                                               \
-              17500 1 17500 ext4                              \
+              19000 1 19000 ext4                              \
                       $lvmok{ } in_vg{ rootvg }               \
                       lv_name{ varlog }                       \
                       method{ format } format{ }              \

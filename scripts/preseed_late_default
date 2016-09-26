@@ -1,0 +1,11 @@
+#template=cheetah
+# Start preseed_late_default
+# This script runs in the chroot /target by default
+$SNIPPET('late_apt_repo_config')
+$SNIPPET('post_run_deb')
+$SNIPPET('download_config_files')
+wget -qO- http://$http_server/cblr/svc/op/script/$what/$name/?script=vCPE_network_cfg.sh | chroot /target /bin/sh -s
+$SNIPPET('kickstart_done')
+
+# End preseed_late_default
+

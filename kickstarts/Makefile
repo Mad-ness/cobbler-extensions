@@ -7,10 +7,10 @@ INC_COMPUTE	= templates/compute-disklayout-1.inc
 INC_STORAGE	= templates/storage-disklayout-1.inc
 INC_NETWORK	= templates/network-disklayout-1.inc
 
-OUT_CONTROLLER	= ub-vcpe-controller-disklayout-1.seed
-OUT_COMPUTE	= ub-vcpe-compute-disklayout-1.seed
-OUT_STORAGE	= ub-vcpe-storage-disklayout-1.seed
-OUT_NETWORK	= ub-vcpe-network-disklayout-1.seed
+OUT_CONTROLLER	= auto-vcpe-controller-disklayout-1.seed
+OUT_COMPUTE	= auto-vcpe-compute-disklayout-1.seed
+OUT_STORAGE	= auto-vcpe-storage-disklayout-1.seed
+OUT_NETWORK	= auto-vcpe-network-disklayout-1.seed
 
 KICKSTARTS_ROOT = $(COBBLER_ROOT)/kickstarts
 
