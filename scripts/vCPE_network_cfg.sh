@@ -26,7 +26,7 @@ NET_{{ iface }}
 
 
 # Rewrite rc.local script. This will unset the immutable flag on /etc/network/interfaces once OS firstly booted
-cat << STARTUP > /etc/rc.local
+cat << "STARTUP" > /etc/rc.local
 #!/bin/sh -e
 #
 # rc.local
