@@ -1,9 +1,10 @@
-= README.md
-= Notes
+# README.md
+# Notes
+
 There are a few findings I observed when have been trying to solve my issues.
 
 
-== Selection of a template engine
+## Selection of a template engine
 
 It is possible to select either Cheetah or Jinja2 of template engines. For this there is an option defalt_template_type in /etc/cobbler/settings (don't forget to restart cobblerd after the modification) that may be adjusted as required and used by default. Besides this option each of templated file may start from line
 
@@ -15,7 +16,7 @@ This allows to set to a required renderer. Because of Cheetah website is almost 
 
 Update: It is not a good idea to set a global variable to jinja2. It breaks a lot of templates using for generating pxe configurations. So in case of you do the changing of an engine you have to take care about of all templates are even used by Cobbler to be rewritten for Jinja2 perspective, include files in /etc/cobbler/*.
 
-=== <cobbler_data>/scripts
+### \<cobbler_data\>/scripts
 
 In general <cobbler_data> is /var/lib/cobbler path and is hardcoded.
 
@@ -58,7 +59,7 @@ Also the files may use jinja2 syntax, for instance:
 
 Unfortunatly $SNIPPETS directive is not supported in case of Jinja2.
 
-==== How to ensure that my scripts correctly parsed
+#### How to ensure that my scripts correctly parsed
 
 As a rule the scripts are being used such way, during installation for instance:
 	
@@ -80,7 +81,7 @@ I have found this code in examples, <cobbler_data>/kickstarts, coming out of box
 here.on2 is a script that taken from <cobbler_data>/scripts directory.
 
 
-==== Some facts:
+#### Some facts:
 
 - Files in the <cobbler_data>/scripts directory may be written in Cheetah and Jinja2 languages
 - If scripts <cobbler_data>/scripts are written in Cheetah when snippets also should be written in Cheetah
@@ -89,5 +90,5 @@ here.on2 is a script that taken from <cobbler_data>/scripts directory.
 - Poor supporting of Jinja2 templating
 
 
-== <cobbler_data>/modules
+## <cobbler_data>/modules
 - Any modifications performed in .py modules must issue the restarting of cobblerd service as they read only once during starting the service
