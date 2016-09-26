@@ -41,3 +41,4 @@ d-i preseed/late_command string \
    wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=vCPE_network_cfg.sh | chroot /target /bin/sh -s; \
    wget -O- http://$http_server/cblr/svc/op/script/$what/$name/?script=vCPE_late_custom.sh | chroot /target /bin/sh -s
 
+# pass the vCPE_late_custom.sh script is being executed last
