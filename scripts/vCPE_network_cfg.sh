@@ -8,6 +8,9 @@ iface lo inet loopback
 source-directory /etc/network/interfaces.d
 INTES
 
+# This is a trick, I don't know why but the installer rewrites this config and I cannot catch the moment
+chattr +i /etc/network/interfaces
+
 {% for iface in interfaces.keys() %}
 {% if interfaces[iface].ip_address|default('') != '' and interfaces[iface].netmask|default('') != '' %}
 cat << NET_{{ iface }} > /etc/network/interfaces.d/{{ iface }}
