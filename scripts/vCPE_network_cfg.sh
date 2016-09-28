@@ -19,6 +19,7 @@ auto {{ iface }}
 iface {{ iface }} inet static
 	address {{ interfaces[iface].ip_address }}
 	netmask {{ interfaces[iface].netmask }}
+        {% if interfaces[iface].if_gateway|default('') != '' %}gateway {{ interfaces[iface].if_gateway }}{% endif %}
         {% if interfaces[iface].mac_address|default('') != '' %}hwaddress {{ interfaces[iface].mac_address }}{% endif %}
 NET_{{ iface }}
 {% endif %}

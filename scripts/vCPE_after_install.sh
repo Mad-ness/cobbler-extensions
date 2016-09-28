@@ -43,6 +43,10 @@ update_sshd() {
     set_option /etc/ssh/sshd_config "AllowGroups"	     "sshtech" " "  # Restrict ssh access by this only group
 }
 
+delete_dummy_filesystem() {
+    sed -e -i '!/var/dummy!d' /etc/fstab
+}
+
 
 
 add_ssh_pub_key
