@@ -13,15 +13,23 @@ chattr +i /etc/network/interfaces
 
 {% for iface in interfaces.keys() %}
 {% if interfaces[iface].ip_address|default('') != '' and interfaces[iface].netmask|default('') != '' %}
-cat << NET_{{ iface }} > /etc/network/interfaces.d/{{ iface }}
+{% set dot_split = iface.split('.') %}
+cat << NET_DEF > /etc/network/interfaces.d/{{ dot_split }}
 # Created upon installation
 auto {{ iface }}
 iface {{ iface }} inet static
 	address {{ interfaces[iface].ip_address }}
 	netmask {{ interfaces[iface].netmask }}
-        {% if interfaces[iface].if_gateway|default('') != '' %}gateway {{ interfaces[iface].if_gateway }}{% endif %}
-        {% if interfaces[iface].mac_address|default('') != '' %}hwaddress {{ interfaces[iface].mac_address }}{% endif %}
-NET_{{ iface }}
+{% if interfaces[iface].if_gateway|default('') != '' %}
+        gateway {{ interfaces[iface].if_gateway }}
+{% endif %}
+{% if interfaces[iface].mac_address|default('') != '' %}
+        hwaddress {{ interfaces[iface].mac_address }}
+{% endif %}
+{% if dot_split|len == 2 %}
+        vlan-raw-device {{ dot_split[0] }}
+{% endif %}
+NET_DEF
 {% endif %}
 {% endfor %}
 
