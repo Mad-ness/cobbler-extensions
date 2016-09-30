@@ -1,4 +1,5 @@
 hostname: server1.example.com
+system_name: server1.example.com
 netboot_enabled: false
 netboot_configuration:
 	kernel_options:
@@ -26,10 +27,10 @@ network_configuration:
 	- id: p3p1_bond0_slave
 	  name: p3p1
 	  ipconfig: bonding_slave
-	- id: p3p2
+	- id: p3p2_master
 	  name: p3p2
 	  ipconfig: bonding_master	
-	- id: p3p3
+	- id: p3p3_slave
 	  name: p3p3
 	  ipconfig: bonding_slave
 	- id: bond0

@@ -13,7 +13,10 @@ Next options are possible:
 
 These options should go at a top level.
 
-    hostname: server1.example.com
+    hostname: server1.example.com      # This FQDN will be assigned to a host
+    system_name: server1.example.com   # (optional) This is an internal name
+
+The variable `system_name` might be missed and in the case `hostname` is being used instead. `hostname` and `system_name` must be unique names across all systems (but may be equal).
 
 
 ## Netboot configuration
@@ -123,6 +126,7 @@ Example:
     name: bond0
     ipconfig: bonding
     bonding_devices: [ p3p1, p3p2, p3p3 ]
+                                   # list of real devices
     address: 172.16.1.1
     netmask: 255.255.255.0
     routes:             # (optional)
@@ -184,10 +188,10 @@ This is a comple example.
                 - id: p3p1_bond0_slave
                   name: p3p1
                   ipconfig: bonding_slave
-                - id: p3p2
+                - id: p3p2_bond0_master
                   name: p3p2
                   ipconfig: bonding_master      
-                - id: p3p3
+                - id: p3p3_bond0_slave
                   name: p3p3
                   ipconfig: bonding_slave
                 - id: bond0
