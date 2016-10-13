@@ -1,0 +1,50 @@
+vars:
+    domain_name: example.com
+    profile: ubuntu-server-14.04.5-x86_64
+    ks_controllers: /var/lib/cobbler/kickstarts/auto-dev-controller-disklayout-1.seed
+    ks_computes: /var/lib/cobbler/kickstarts/auto-dev-compute-disklayout-1.seed
+    net_192_net: "192.168.1"
+    net_192_gw: "192.168.1.1"
+    net_192_netmask: "255.255.255.0"
+
+systems:
+    - name: dev-controller-1
+      comment: Controller 1 of 3
+      kickstart: "{{ vars.ks_controllers }}"
+      kernel_options: { interface: em1 }
+      hostname: controller-1.{{ vars.domain_name }}
+      netboot_enabled: false
+      profile: "{{ vars.profile }}"
+      interfaces:
+        - name: "em1"
+          mac_address: "00:00:00:00:00:00"
+          ip_address: "{{ vars.net_192_net }}.254"
+          netmask: "{{ vars.net_192_netmask }}"
+          gateway: "{{ vars.net_192_gw }}"
+    - name: dev-controller-2
+      comment: Controller 2 of 3
+      kickstart: "{{ vars.ks_controllers }}"
+      kernel_options: { interface: em1 }
+      hostname: controller-2.{{ vars.domain_name }}
+      netboot_enabled: false
+      profile: "{{ vars.profile }}"
+      interfaces:
+        - name: "em1"
+          mac_address: "00:00:00:00:00:00"
+          ip_address: "{{ vars.net_192_net }}.253"
+          netmask: "{{ vars.net_192_netmask }}"
+          gateway: "{{ vars.net_192_gw }}"
+    - name: dev-controller-3
+      comment: Controller 3 of 3
+      kickstart: "{{ vars.ks_controllers }}"
+      kernel_options: { interface: em1 }
+      hostname: controller-3.{{ vars.domain_name }}
+      netboot_enabled: false
+      profile: "{{ vars.profile }}"
+      interfaces:
+        - name: "em1"
+          mac_address: "00:00:00:00:00:00"
+          ip_address: "{{ vars.net_192_net }}.252"
+          netmask: "{{ vars.net_192_netmask }}"
+          gateway: "{{ vars.net_192_gw }}"
+ 

@@ -2,52 +2,52 @@ hostname: server1.example.com
 system_name: server1.example.com
 netboot_enabled: false
 netboot_configuration:
-	kernel_options:
-	  - interface: em1
-        kickstart_file: /path/to/kickstart/file
-	install_profile: ubuntu-server-14.04.5-x64_86
+    kernel_options:
+      - interface: em1
+    kickstart_file: /path/to/kickstart/file
+    install_profile: ubuntu-server-14.04.5-x64_86
 network_configuration:
-	dns_servers: [ 8.8.4.4, 8.8.8.8 ]
-	interfaces:
-	- id: em1
- 	  name: em1
-	  ipconfig: dhcp
-	  hwaddress: '00:00:00:00:00:01'
-	- id: p3p1_static
-	  name: p3p1
-	  ipconfig: static
-	  address: 192.168.1.1
-	  netmask: 255.255.255.0 
-	  hwaddress: '00:00:00:00:00:02'
-	  routes: 
-	  - dest: 192.168.2.0/24 
-            via 192.168.1.1
-	  - dest: 192.168.3.0/24
-	  - dest: 192.168.4.0/24
-	- id: p3p1_bond0_slave
-	  name: p3p1
-	  ipconfig: bonding_slave
-	- id: p3p2_master
-	  name: p3p2
-	  ipconfig: bonding_master	
-	- id: p3p3_slave
-	  name: p3p3
-	  ipconfig: bonding_slave
-	- id: bond0
-	  name: bond0
-	  # device: bond0
-	  ipconfig: bonding
-	  bonding_devices: [ p3p1, p3p2, p3p3 ]
-	  address: 172.16.1.1
-	  netmask: 255.255.255.0
-	  routes: 
-	  - dest: 192.168.0.0/16
-	  - dest: 10.19.0.0/8
-	    via: 192.168.34.192
-	- id: bond0.6
-	  name: bond0.6
-	  ipconfig: vlan
-	  device: bond0
-	  address: 10.0.0.1
-	  netmask: 255.255.255.0 
-	  routes: []
+    dns_servers: [ 8.8.4.4, 8.8.8.8 ]
+    interfaces:
+    - id: em1
+      name: em1
+      ipconfig: dhcp
+      hwaddress: '00:00:00:00:00:01'
+    - id: p3p1_static
+      name: p3p1
+      ipconfig: static
+      address: 192.168.1.1
+      netmask: 255.255.255.0 
+      hwaddress: '00:00:00:00:00:02'
+      routes: 
+      - dest: 192.168.2.0/24 
+        via: 192.168.1.1
+      - dest: 192.168.3.0/24
+      - dest: 192.168.4.0/24
+    - id: p3p1_bond0_slave
+      name: p3p1
+      ipconfig: bonding_slave
+    - id: p3p2_master
+      name: p3p2
+      ipconfig: bonding_master    
+    - id: p3p3_slave
+      name: p3p3
+      ipconfig: bonding_slave
+    - id: bond0
+      name: bond0
+      # device: bond0
+      ipconfig: bonding
+      bonding_devices: [ p3p1, p3p2, p3p3 ]
+      address: 172.16.1.1
+      netmask: 255.255.255.0
+      routes: 
+      - dest: 192.168.0.0/16
+      - dest: 10.19.0.0/8
+        via: 192.168.34.192
+    - id: bond0.6
+      name: bond0.6
+      ipconfig: vlan
+      device: bond0
+      address: 10.0.0.1
+      netmask: 255.255.255.0 
+      routes: []
