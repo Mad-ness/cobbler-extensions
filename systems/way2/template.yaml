@@ -1,29 +1,29 @@
 comment: "{{ comment }}"
 status: {{ status }}
 kickstart: "{{ kickstart }}"
-name_servers_search: 
-ks_meta:
-kernel_options_post:
+name_servers_search: []
+ks_meta: {}
+kernel_options_post: {}
 image: ""
 redhat_management_key: "<<inherit>>"
 virt_path: "<<inherit>>"
 power_user: ""
-kernel_options: "{{ kernel_options }}"
-ctime: {{ creation_time }}
-name_servers: 
-mtime: {{ modification_time }}
+kernel_options: {{ kernel_options }}
+ctime: "{{ ctime }}"
+name_servers: []
+mtime: "{{ mtime }}"
 enable_gpxe: false
-template_files:
+template_files: {}
 gateway: ""
 uid: {{ uid }}
 virt_auto_boot: 0
 power_type: ipmitool
 virt_cpus: "<<inherit>>"
 mgmt_parameters: "<<inherit>>"
-boot_files: 
+boot_files: {}
 hostname: "{{ hostname }}"
 repos_enabled: false
-mgmt_classes: 
+mgmt_classes: []
 power_pass: ""
 netboot_enabled: {{ netboot_enabled }}
 ivp6_autoconfiguration: false
@@ -35,7 +35,7 @@ interfaces:
         ipv6_address: ""
         interface_type: ""
         static: true
-        cnames: 
+        cnames: []
         mtu: ""
         bonding_master: ""
         subnet: ""
@@ -49,19 +49,19 @@ interfaces:
         ip_address: "{{ iface.ip_address }}"
         dhcp_tag: ""
         ipv6_mtu: ""
-        static_routes: 
-        ipv6_static_routes:
+        static_routes: []
+        ipv6_static_routes: []
         if_gateway: "{{ iface.gateway }}"
         dns_name: ""
         bonding: ""
         bridge_opts: ""
         connected_mode: false
-        ipv6_secondaries: 
+        ipv6_secondaries: []
         ipv6_default_gateway: ""
 {%- endfor %}
 power_address: ""
-proxy: "<inherit>>"
-fetchable_files: 
+proxy: "<<inherit>>"
+fetchable_files: {}
 virt_file_size: "<<inherit>>"
 ldap_enabled: false
 monit_enabled: false
@@ -74,5 +74,5 @@ virt_ram: "<<inherit>>"
 power_id: ""
 redhat_management_server: "<<inherit>>"
 depth: 2
-ldap_type: authconfig
+ldap_type: "authconfig"
 template_remote_kickstarts: 0

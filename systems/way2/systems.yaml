@@ -6,45 +6,82 @@ vars:
     net_192_net: "192.168.1"
     net_192_gw: "192.168.1.1"
     net_192_netmask: "255.255.255.0"
+    netboot_enabled: false
+    name_prefix: dev-
+    status: "production"
 
 systems:
-    - name: dev-controller-1
+#
+# Controllers definitions
+#
+    - name: "{{ vars.name_prefix }}controller-1"
       comment: Controller 1 of 3
+      status: "{{ vars.status }}"
       kickstart: "{{ vars.ks_controllers }}"
       kernel_options: { interface: em1 }
       hostname: controller-1.{{ vars.domain_name }}
-      netboot_enabled: false
+      netboot_enabled: "{{ vars.netboot_enabled }}"
       profile: "{{ vars.profile }}"
       interfaces:
         - name: "em1"
-          mac_address: "00:00:00:00:00:00"
+          mac_address: "D4:85:64:58:F5:98"
           ip_address: "{{ vars.net_192_net }}.254"
           netmask: "{{ vars.net_192_netmask }}"
           gateway: "{{ vars.net_192_gw }}"
-    - name: dev-controller-2
+        - name: "em2"
+          mac_address: "D4:85:64:58:F5:9C"
+
+    - name: "{{ vars.name_prefix }}controller-2"
       comment: Controller 2 of 3
+      status: "{{ vars.status }}"
       kickstart: "{{ vars.ks_controllers }}"
       kernel_options: { interface: em1 }
       hostname: controller-2.{{ vars.domain_name }}
-      netboot_enabled: false
+      netboot_enabled: "{{ vars.netboot_enabled }}"
       profile: "{{ vars.profile }}"
       interfaces:
         - name: "em1"
-          mac_address: "00:00:00:00:00:00"
+          mac_address: "D4:85:64:5C:82:D8"
           ip_address: "{{ vars.net_192_net }}.253"
           netmask: "{{ vars.net_192_netmask }}"
           gateway: "{{ vars.net_192_gw }}"
-    - name: dev-controller-3
+        - name: "em2"
+          mac_address: "D4:85:64:5C:82:DC"
+
+    - name: "{{ vars.name_prefix }}controller-3"
       comment: Controller 3 of 3
+      status: "{{ vars.status }}"
       kickstart: "{{ vars.ks_controllers }}"
       kernel_options: { interface: em1 }
       hostname: controller-3.{{ vars.domain_name }}
-      netboot_enabled: false
+      netboot_enabled: "{{ vars.netboot_enabled }}"
       profile: "{{ vars.profile }}"
       interfaces:
         - name: "em1"
-          mac_address: "00:00:00:00:00:00"
+          mac_address: "D4:85:64:49:23:50"
           ip_address: "{{ vars.net_192_net }}.252"
           netmask: "{{ vars.net_192_netmask }}"
           gateway: "{{ vars.net_192_gw }}"
+        - name: "em2"
+          mac_address: "D4:85:64:49:23:54"
+#
+# Computes definitions
+#
+    - name: "{{ vars.name_prefix }}compute-1"
+      comment: Compute node
+      status: "{{ vars.status }}"
+      kickstart: "{{ vars.ks_controllers }}"
+      kernel_options: { interface: em1 }
+      hostname: compute-1.{{ vars.domain_name }}
+      netboot_enabled: "{{ vars.netboot_enabled }}"
+      profile: "{{ vars.profile }}"
+      interfaces:
+        - name: "em1"
+          mac_address: "D4:85:64:49:B1:58"
+          ip_address: "{{ vars.net_192_net }}.251"
+          netmask: "{{ vars.net_192_netmask }}"
+          gateway: "{{ vars.net_192_gw }}"
+        - name: "em2"
+          mac_address: "D4:85:64:49:B1:5C"
+
  
