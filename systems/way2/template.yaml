@@ -1,0 +1,78 @@
+comment: "{{ comment }}"
+status: {{ status }}
+kickstart: "{{ kickstart }}"
+name_servers_search: []
+ks_meta: {}
+kernel_options_post: {}
+image: ""
+redhat_management_key: "<<inherit>>"
+virt_path: "<<inherit>>"
+power_user: ""
+kernel_options: {{ kernel_options }}
+ctime: "{{ ctime }}"
+name_servers: []
+mtime: "{{ mtime }}"
+enable_gpxe: false
+template_files: {}
+gateway: ""
+uid: {{ uid }}
+virt_auto_boot: 0
+power_type: ipmitool
+virt_cpus: "<<inherit>>"
+mgmt_parameters: "<<inherit>>"
+boot_files: {}
+hostname: "{{ hostname }}"
+repos_enabled: false
+mgmt_classes: []
+power_pass: ""
+netboot_enabled: {{ netboot_enabled }}
+ivp6_autoconfiguration: false
+profile: "{{ profile }}"
+virt_type: xenpv
+interfaces:
+{%- for iface in interfaces %}
+    "{{ iface.name }}":
+        ipv6_address: ""
+        interface_type: ""
+        static: true
+        cnames: []
+        mtu: ""
+        bonding_master: ""
+        subnet: ""
+        management: false
+        interface_master: ""
+        mac_address: "{{ iface.mac_address }}"
+        ipv6_prefix: ""
+        virt_bridge: xenbr0
+        netmask: "{{ iface.netmask }}"
+        bonding_opts: ""
+        ip_address: "{{ iface.ip_address }}"
+        dhcp_tag: ""
+        ipv6_mtu: ""
+        static_routes: []
+        ipv6_static_routes: []
+        if_gateway: "{{ iface.gateway }}"
+        dns_name: ""
+        bonding: ""
+        bridge_opts: ""
+        connected_mode: false
+        ipv6_secondaries: []
+        ipv6_default_gateway: ""
+{%- endfor %}
+power_address: ""
+proxy: "<<inherit>>"
+fetchable_files: {}
+virt_file_size: "<<inherit>>"
+ldap_enabled: false
+monit_enabled: false
+ipv6_default_device: ""
+virt_pxe_boot: 0
+virt_disk_driver: "<<inherit>>"
+owner: "<<inherit>>"
+name: "{{ name }}"
+virt_ram: "<<inherit>>"
+power_id: ""
+redhat_management_server: "<<inherit>>"
+depth: 2
+ldap_type: "authconfig"
+template_remote_kickstarts: 0

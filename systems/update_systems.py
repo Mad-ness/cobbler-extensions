@@ -16,7 +16,7 @@ def load_yaml(filename):
 
 
 if __name__ == "__main__":
-	y = load_yaml('systems.yaml')
+	y = load_yaml(sys.argv[1])
 	print (y)
 	pass
 
