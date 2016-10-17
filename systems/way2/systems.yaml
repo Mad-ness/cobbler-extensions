@@ -1,14 +1,14 @@
 vars:
     domain_name: example.com
     profile: ubuntu-server-14.04.5-x86_64
-    ks_controllers: /var/lib/cobbler/kickstarts/auto-dev-controller-disklayout-1.seed
-    ks_computes: /var/lib/cobbler/kickstarts/auto-dev-compute-disklayout-1.seed
+    ks_controllers: /var/lib/cobbler/kickstarts/dev-controller-disklayout-1.seed
+    ks_computes: /var/lib/cobbler/kickstarts/dev-compute-disklayout-1.seed
     controller_pxe_iface: "enp2s0f0"
     compute_pxe_iface: "enp2s0f0"
     net_vlan3_net: "192.168.1"
     net_vlan3_gw: "192.168.1.1"
     net_vlan3_netmask: "255.255.255.0"
-    net_vlan3_name_fix: ".3"
+    net_vlan3_name_fix: ""
     net_vlan4_net: "10.0.0"
     net_vlan4_netmask: "255.255.255.0"
     net_vlan5_net: "10.1.0"
@@ -17,10 +17,10 @@ vars:
     name_prefix: dev-
     status: "production"
 
-systems:
 #
 # Controllers definitions
 #
+systems:
     - name: "{{ vars.name_prefix }}controller-1"
       comment: Controller 1 of 3
       status: "{{ vars.status }}"
@@ -131,7 +131,7 @@ systems:
       profile: "{{ vars.profile }}"
       interfaces:
         - name: "enp2s0f0{{ vars.net_vlan3_name_fix }}"
-          mac_address: "d4:85:64:49:a2:80"
+          mac_address: "D4:85:64:49:81:90"
           ip_address: "{{ vars.net_vlan3_net }}.133"
           netmask: "{{ vars.net_vlan3_netmask }}"
           gateway: "{{ vars.net_vlan3_gw }}"
@@ -155,7 +155,7 @@ systems:
       profile: "{{ vars.profile }}"
       interfaces:
         - name: "enp2s0f0{{ vars.net_vlan3_name_fix }}"
-          mac_address: "d4:85:64:49:63:78"
+          mac_address: "D4:85:64:49:63:78"
           ip_address: "{{ vars.net_vlan3_net }}.111"
           netmask: "{{ vars.net_vlan3_netmask }}"
           gateway: "{{ vars.net_vlan3_gw }}"
@@ -179,7 +179,7 @@ systems:
       profile: "{{ vars.profile }}"
       interfaces:
         - name: "enp2s0f0{{ vars.net_vlan3_name_fix }}"
-          mac_address: "d4:85:64:49:83:7c"
+          mac_address: "D4:85:64:49:83:78"
           ip_address: "{{ vars.net_vlan3_net }}.113"
           netmask: "{{ vars.net_vlan3_netmask }}"
           gateway: "{{ vars.net_vlan3_gw }}"
@@ -203,7 +203,7 @@ systems:
       profile: "{{ vars.profile }}"
       interfaces:
         - name: "enp2s0f0{{ vars.net_vlan3_name_fix }}"
-          mac_address: "18:a9:05:46:03:d4"
+          mac_address: "18:A9:05:46:03:D0"
           ip_address: "{{ vars.net_vlan3_net }}.116"
           netmask: "{{ vars.net_vlan3_netmask }}"
           gateway: "{{ vars.net_vlan3_gw }}"
@@ -217,10 +217,27 @@ systems:
           netmask: "{{ vars.net_vlan5_netmask }}"
 
 
-
-
-
-
-
+    - name: "{{ vars.name_prefix }}compute-12"
+      comment: Compute node
+      status: "{{ vars.status }}"
+      kickstart: "{{ vars.ks_computes }}"
+      kernel_options: { interface: "{{ vars.compute_pxe_iface }}" }
+      hostname: compute-12.{{ vars.domain_name }}
+      netboot_enabled: "{{ vars.netboot_enabled }}"
+      profile: "{{ vars.profile }}"
+      interfaces:
+        - name: "enp2s0f0{{ vars.net_vlan3_name_fix }}"
+          mac_address: "68:b5:99:bb:82:30"
+          ip_address: "{{ vars.net_vlan3_net }}.127"
+          netmask: "{{ vars.net_vlan3_netmask }}"
+          gateway: "{{ vars.net_vlan3_gw }}"
+        - name: "enp2s0f0.4"
+          mac_address: ""
+          ip_address: "{{ vars.net_vlan4_net }}.31"
+          netmask: "{{ vars.net_vlan4_netmask }}"
+        - name: "enp2s0f0.5"
+          mac_address: ""
+          ip_address: "{{ vars.net_vlan5_net }}.61"
+          netmask: "{{ vars.net_vlan5_netmask }}"
 
 
